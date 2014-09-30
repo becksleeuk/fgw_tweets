@@ -1,3 +1,4 @@
+require 'scraperwiki'
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
@@ -22,7 +23,7 @@ doc = Nokogiri.HTML(body)
 tweets = doc.search('.stream-item')
 
 # If the table doesn't exist, create it (trust me on this one!)
-ScraperWiki.select("* from swdata") rescue ScraperWiki.sqliteexecute('CREATE TABLE `swdata` (`time` text, `permalink` text, `tweet` text,`tweettext` text, `lat` real, `lng` real)')
+ScraperWiki.select("* from data") rescue ScraperWiki.sqliteexecute('CREATE TABLE `data` (`time` text, `permalink` text, `tweet` text,`tweettext` text, `lat` real, `lng` real)')
 ScraperWiki.select("* from metadata") rescue ScraperWiki.sqliteexecute('CREATE TABLE `metadata` (`username` text, `name` text)')
 
 meta = {}
